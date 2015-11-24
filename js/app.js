@@ -1,7 +1,8 @@
-define(['jquery','underscore', 'mustache'], function ($, _, Mustache) {
+define(['jquery','underscore', 'mustache', 'text!templates/nav.html'], function ($, _, Mustache, navTemplate) {
     var initialize = function () {
         console.log('hello, $ is ', $.fn.jquery);
         console.log('hello, _ is ', _.VERSION);
+        console.log("nav:", navTemplate);
 
         var person = {
             firstName: 'Cyper',
