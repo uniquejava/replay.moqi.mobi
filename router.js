@@ -8,6 +8,12 @@ define([
 
 ], function ($, _, Backbone, HomeView, ProductPage, BlogDetailsView) {
 
+
+    var BlogPostModel = Backbone.Model.extend({
+        idAttribute: 'slug',
+        urlRoot:   "http://localhost:3000/blogs"
+    });
+
     var AppRouter = Backbone.Router.extend({
         routes: {
             'index': 'homePage',
@@ -40,9 +46,12 @@ define([
         appRouter.on('route:blog', function (slug) {
             console.log('route:blog');
 
-            var blogDetailsView = new BlogDetailsView();
-            blogDetailsView.getBlog(slug);
-            blogDetailsView.render();
+            var blogModel = new BlogPostModel({slug: slug});
+
+            var blogDetailsView = new BlogDetailsView({model: blogModel});
+            blogModel.fetch();
+
+           // blogDetailsView.render();
 
         });
 

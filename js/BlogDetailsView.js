@@ -2,25 +2,21 @@ define(['jquery',
         'underscore',
         'backbone',
         'mustache',
-        'text!../index.html',
+        'text!templates/blog_details.html',
         'json!../configure.json',
     ],
-    function ($, _, Backbone, Mustache, indexTemplate, config) {
+    function ($, _, Backbone, Mustache, blogDetailsTemplate, config) {
+
         var BlogDetailsView = Backbone.View.extend({
-            el: $('head'),
-            initialize: function () {
+            el: $('#content'),
 
-            },
-
-            getBlog: function(slug) {
-                console.log(slug);
+            initialize: function(){
+                this.listenTo(this.model, 'change', this.render, this);
             },
 
             render: function () {
-
-                var html = Mustache.to_html(indexTemplate, config['seoinfo']);
-                this.$el.html(html)
-
+                var html = Mustache.to_html(blogDetailsTemplate, this.model.toJSON());
+                this.$el.html(html);
             }
         });
         return BlogDetailsView;
