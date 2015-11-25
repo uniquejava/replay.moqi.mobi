@@ -3,8 +3,10 @@ define([
     'underscore',
     'backbone',
     '../js/HomeView',
-    '../js/ProductPage'
-], function ($, _, Backbone, HomeView, ProductPage) {
+    '../js/ProductPage',
+    '../js/BlogDetailsView'
+
+], function ($, _, Backbone, HomeView, ProductPage, BlogDetailsView) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -35,11 +37,12 @@ define([
             productPage.render();
         });
 
-        appRouter.on('route:blog', function () {
+        appRouter.on('route:blog', function (slug) {
             console.log('route:blog');
 
-            var productPage = new ProductPage();
-            productPage.render();
+            var blogDetailsView = new BlogDetailsView();
+            blogDetailsView.getBlog(slug);
+            blogDetailsView.render();
 
         });
 
