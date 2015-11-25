@@ -1,20 +1,22 @@
-{{#product}}
-<div class="pure-u-1 pure-u-md-1-3">
-    <div class="pricing-table {{css}}">
-        <div class="pricing-table-header">
-            <h2>{{type}}</h2>
+<div class="pricing-tables pure-g">
+    {{#product}}
+    <div class="pure-u-1 pure-u-md-1-3">
+        <div class="pricing-table {{css}}">
+            <div class="pricing-table-header">
+                <h2>{{type}}</h2>
 
             <span class="pricing-table-price">
                 {{price}} <span> setup</span>
             </span>
+            </div>
+
+            <ul class="pricing-table-list">
+                <li>{{type}} setup</li>
+                <li>Unlimited bandwidth</li>
+            </ul>
+
+            <button class="button-choose pure-button">Choose</button>
         </div>
-
-        <ul class="pricing-table-list">
-            <li>{{type}} setup</li>
-            <li>Unlimited bandwidth</li>
-        </ul>
-
-        <button class="button-choose pure-button">Choose</button>
     </div>
+    {{/product}}
 </div>
-{{/product}}

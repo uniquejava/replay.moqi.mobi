@@ -7,7 +7,7 @@ define(['jquery',
     ],
     function ($, _, Backbone, Mustache, blogsTemplate, blogPosts) {
         var BlogPostView = Backbone.View.extend({
-            el: $("#blogArea"),
+            el: $("#content"),
 
             render: function () {
                 var blogs = [];
