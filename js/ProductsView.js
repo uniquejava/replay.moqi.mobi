@@ -7,7 +7,7 @@ define(['jquery',
     ],
     function ($, _, Backbone, Mustache, productsTemplate, config) {
         var ProductsView = Backbone.View.extend({
-            el: $("#products"),
+            el: $("#blogArea"),
 
             render: function () {
                 var html = Mustache.to_html(productsTemplate, config);
