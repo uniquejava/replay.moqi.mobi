@@ -1,37 +1,41 @@
-define(['jquery', 'underscore', 'mustache', 'text!templates/nav.html', 'json!http://localhost:3000/blogs','text!../index.html'],
-    function ($, _, Mustache, navTemplate, blogPosts, indexTemplate) {
-    var initialize = function () {
-        this.template = navTemplate;
-        this.indexTemplate = indexTemplate;
+define(['jquery',
+        'underscore',
+        'mustache',
+        'text!templates/blog_posts.html',
+        'text!../index.html',
+        'json!http://localhost:3000/blogs',
+        'json!../configure.json',
+        'text!templates/product.html'
+    ],
+    function ($, _, Mustache, blogsTemplate, indexTemplate, blogPosts, configure, productsTemplate) {
+        var initialize = function () {
+            this.blogsTemplate = blogsTemplate;
+            this.indexTemplate = indexTemplate;
+            this.productsTemplate = productsTemplate;
+            this.config = configure;
 
-        var info = [];
-        $.each(blogPosts, function (key, val) {
-            var blog = {};
-            blog.title = val['title'];
-            blog.description = val['description'];
-            blog.slug = val['slug'];
-            blog.keywords = val['keywords'];
-            blog.created = val['created'];
-            info.push(blog);
-        });
+            var blogs = [];
+            $.each(blogPosts, function (key, val) {
+                var blog = {};
+                blog.title = val['title'];
+                blog.description = val['description'];
+                blog.slug = val['slug'];
+                blog.keywords = val['keywords'];
+                blog.created = val['created'];
+                blogs.push(blog);
+            });
 
-        var html = Mustache.to_html(this.template, info);
-        $("#blogArea").html(html);
+            $('#products').html(Mustache.to_html(this.productsTemplate, this.config["product"]));
 
-        var seoinfo = {
-            description: "墨颀移动 CMS移动平台的CMS解决方案",
-            keywords: "移动CMS,移动CMS框架,移动平台CMS,移动CMS系统",
-            title: "墨颀 CMS - 移动平台的CMS解决方案"
+            var partials = {"products": "mo"};
+            $("#blogArea").html(Mustache.to_html(this.blogsTemplate, blogs, partials));
+            $('head').html(Mustache.to_html(this.indexTemplate, this.config["seoinfo"]));
+
         };
 
-        var head = Mustache.to_html(this.indexTemplate, seoinfo);
-        console.log(head);
-
-        $('head').html(head);
-
-    };
-
-    return {
-        initialize: initialize
+        return {
+            initialize: initialize
+        }
     }
-});
+)
+;
