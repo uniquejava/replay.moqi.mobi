@@ -3,16 +3,16 @@ define(['jquery',
         'backbone',
         'mustache',
         '../js/BlogPostView',
-        'json!../configure.json',
-        'text!templates/product.html'
+        '../js/ProductsView',
     ],
-    function ($, _, Backbone, Mustache, BlogPostView, config, productsTemplate) {
+    function ($, _, Backbone, Mustache, BlogPostView, ProductsView) {
         var HomeView = Backbone.View.extend({
             render: function () {
                 var blogPostView = new BlogPostView();
                 blogPostView.render();
 
-                $('#products').html(Mustache.to_html(productsTemplate, config["product"]));
+                var productsView = new ProductsView();
+                productsView.render();
 
             }
         });
