@@ -5,7 +5,8 @@ require.config({
         underscore: 'underscore-1.8.3',
         mustache: 'mustache-2.2.0',
         templates: '../templates',
-        text: 'text-2.0.14'
+        text: 'requirejs-text-2.0.14',
+        json: 'requirejs-json-0.4.0'
     },
     shim: {
         // nothing
