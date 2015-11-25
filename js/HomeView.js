@@ -6,8 +6,9 @@ define(['jquery',
         'json!../configure.json',
         '../js/BlogPostView',
         '../js/ProductsView',
+        '../js/FooterView',
     ],
-    function ($, _, Backbone, Mustache, indexTemplate, config, BlogPostView, ProductsView) {
+    function ($, _, Backbone, Mustache, indexTemplate, config, BlogPostView, ProductsView, FooterView) {
         var HomeView = Backbone.View.extend({
             el: $('head'),
 
@@ -17,6 +18,9 @@ define(['jquery',
 
                 var productsView = new ProductsView();
                 productsView.render();
+
+                var footerView = new FooterView();
+                footerView.render();
 
                 var html = Mustache.to_html(indexTemplate, config['seoinfo']);
                 this.$el.html(html)
