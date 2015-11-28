@@ -8,7 +8,8 @@ require.config({
         templates: '../templates',
         router: '../router',
         text: 'requirejs-text-2.0.14',
-        json: 'requirejs-json-0.4.0'
+        json: 'requirejs-json-0.4.0',
+        jquerySidr: 'jquery.sidr'
     },
     shim: {
         // nothing

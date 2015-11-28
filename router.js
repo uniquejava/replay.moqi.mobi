@@ -5,9 +5,11 @@ define([
     '../js/HomeView',
     '../js/ProductPage',
     '../js/BlogDetailsView',
-    '../js/AboutView'
+    '../js/AboutView',
+    '../js/MoqiView',
+    'jquerySidr'
 
-], function ($, _, Backbone, HomeView, ProductPage, BlogDetailsView, AboutView) {
+], function ($, _, Backbone, HomeView, ProductPage, BlogDetailsView, AboutView, MoqiView) {
 
 
     var BlogPostModel = Backbone.Model.extend({
@@ -21,6 +23,7 @@ define([
             'about': 'about',
             'product': 'productPage',
             'blog/:slug': 'blog',
+            'project': 'project',
             '*actions': 'catchAll'
         },
 
@@ -52,6 +55,12 @@ define([
             productPage.render();
         });
 
+        appRouter.on('route:project', function () {
+            console.log('route:project');
+            var moqiView = new MoqiView;
+            moqiView.render();
+        });
+
         appRouter.on('route:blog', function (slug) {
             console.log('route:blog');
 
@@ -66,6 +75,10 @@ define([
 
         appRouter.on('route:catchAll', function () {
             console.log('route:catchAll ');
+            $(document).ready(function() {
+                $('#sidr').show();
+                $('#menu').sidr();
+            });
 
             var homeView = new HomeView();
             homeView.render();
