@@ -9,7 +9,8 @@ require.config({
         router: '../router',
         text: 'requirejs-text-2.0.14',
         json: 'requirejs-json-0.4.0',
-        jquerySidr: 'jquery.sidr'
+        jquerySidr: 'jquery.sidr',
+        markdownConverter:'Markdown.Converter'
     },
     shim: {
         // nothing
