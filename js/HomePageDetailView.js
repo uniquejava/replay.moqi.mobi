@@ -2,11 +2,12 @@ define(['jquery',
         'underscore',
         'backbone',
         'mustache',
-        'text!templates/blog_posts_lists.html',
-        'json!http://localhost:3000/blogs'
+        'text!templates/homepage_detail.html',
+        'json!http://localhost:3000/blogs',
+        'json!../configure.json'
     ],
-    function ($, _, Backbone, Mustache, blogsTemplate, blogPosts) {
-        var BlogPostView = Backbone.View.extend({
+    function ($, _, Backbone, Mustache, homePageTemplate, blogPosts, config) {
+        var HomePageDetailView = Backbone.View.extend({
             el: $("#content"),
 
             render: function () {
@@ -27,10 +28,18 @@ define(['jquery',
                     blogs.push(blog);
                 });
 
-                this.$el.html(Mustache.to_html(blogsTemplate, blogs));
+                var about = {
+                    about:config["about"],
+                    aboutcompany:config["aboutcompany"]
+                };
+                blogs.push(about);
+
+                var html = Mustache.to_html(homePageTemplate, blogs);
+                console.log(html);
+                this.$el.html(html);
 
             }
         });
-        return BlogPostView;
+        return HomePageDetailView;
 
     });

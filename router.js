@@ -4,9 +4,10 @@ define([
     'backbone',
     '../js/HomeView',
     '../js/ProductPage',
-    '../js/BlogDetailsView'
+    '../js/BlogDetailsView',
+    '../js/AboutView'
 
-], function ($, _, Backbone, HomeView, ProductPage, BlogDetailsView) {
+], function ($, _, Backbone, HomeView, ProductPage, BlogDetailsView, AboutView) {
 
 
     var BlogPostModel = Backbone.Model.extend({
@@ -17,6 +18,7 @@ define([
     var AppRouter = Backbone.Router.extend({
         routes: {
             'index': 'homePage',
+            'about': 'about',
             'product': 'productPage',
             'blog/:slug': 'blog',
             '*actions': 'catchAll'
@@ -34,6 +36,13 @@ define([
 
             var homeView = new HomeView();
             homeView.render();
+        });
+
+        appRouter.on('route:about', function () {
+            console.log('route:about');
+
+            var aboutView = new AboutView();
+            aboutView.render();
         });
 
         appRouter.on('route:productPage', function () {
